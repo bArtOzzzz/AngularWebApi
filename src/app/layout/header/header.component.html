@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary static-bg header add-shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand" [routerLink]="['/home']">Fridge Angular</a>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/home']">Home</a>
+                </li>
+                <li *ngIf="isAuth" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/fridges/list']">Fridges</a>
+                </li>
+                <li *ngIf="isAuth" class="nav-item">
+                    <a class="nav-link" href="models/list">Models</a>
+                </li>
+                <li *ngIf="isAuth" class="nav-item">
+                    <a class="nav-link" href="products/list">Products</a>
+                </li>
+                <li *ngIf="isAuth" class="nav-item">
+                    <a class="nav-link" href="users/list">Users</a>
+                </li>
+                <li *ngIf="isAuth" class="nav-item">
+                    <a class="nav-link" href="roles/list">Roles</a>
+                </li>
+            </ul>
+            <div class="float-end d-flex">
+                <a *ngIf="!isAuth" class="nav-link signUp" [routerLink]="['/register']">Sign Up</a>
+                <a *ngIf="!isAuth" class="nav-link login" [routerLink]="['/login']">Login</a>
+                <a *ngIf="isAuth" class="nav-link logout" (click)="logout()">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>

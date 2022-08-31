@@ -1,0 +1,82 @@
+<form #createForm="ngForm" (ngSubmit)="createForm.form.valid && onSubmit()">
+    <!-- Part 1: Create fridge -->
+    <div class="form-group mb-2">
+        <div class="validation-container">
+            <div *ngIf="createForm.dirty && createForm.controls['manufacturer'].invalid" class="text-danger invalidValidation">
+                <div *ngIf="createForm.controls['manufacturer'].errors?.['required']">
+                    Manufacturer is required field
+                </div>
+                <div *ngIf="createForm.controls['manufacturer'].errors?.['minlength']">
+                    Manufacturer min length of 2 character
+                </div>
+            </div>
+        </div>
+        <input [(ngModel)]="fridgeEntity.manufacturer" maxlength="30" minlength="2" required name="manufacturer" type="text" class="form-control" placeholder="Type manufacturer">
+    </div>
+    <div class="form-group mb-2">
+        <div class="validation-container">
+            <div *ngIf="createForm.dirty && createForm.controls['ownerName'].invalid" class="text-danger invalidValidation">
+                <div *ngIf="createForm.controls['ownerName'].errors?.['required']">
+                    Name is required field
+                </div>
+                <div *ngIf="createForm.controls['ownerName'].errors?.['minlength']">
+                    Name min length of 3 character
+                </div>
+            </div>
+        </div>
+        <input [(ngModel)]="fridgeEntity.ownerName" maxlength="30" minlength="3" required name="ownerName" type="text" class="form-control" placeholder="Type your name">
+    </div>
+    <div *ngIf="!isModelChecked" class="form-group mb-3">
+        <div class="validation-container">
+            <div *ngIf="createForm.touched && createForm.controls['modelId'].invalid" class="text-danger invalidValidation">
+                <div *ngIf="createForm.controls['modelId'].errors?.['required']">
+                    Model is required field
+                </div>
+            </div>
+        </div>
+        <select [(ngModel)]="fridgeEntity.modelId" required name="modelId" class="form-control">
+            <option hidden value="">Please Select Model</option>
+            <option *ngFor="let model of modelsList$ | async">{{model.name}}</option>
+        </select>
+    </div>
+
+    <!-- Part 2: Create fridge with new model -->
+    <div class="form-check mb-2">
+        <label>Create new model</label>
+        <input (click)="isActiveModelCheckbox()" type="checkbox" class="form-check-input" id="newModelCheck" onchange='showOrHide("newModelCheck", "newModel")'>
+        <form *ngIf="isModelChecked" #createModelForm="ngForm" (ngSubmit)="createModelForm.form.valid && onSubmit()" class="additive-container" id="newModel">
+            <div class="form-group mb-2">
+                <div class="validation-container">
+                    <div *ngIf="createModelForm.dirty && createModelForm.controls['name'].invalid" class="text-danger invalidValidation">
+                        <div *ngIf="createModelForm.controls['name'].errors?.['required']">
+                            Name is required field
+                        </div>
+                        <div *ngIf="createModelForm.controls['name'].errors?.['minlength']">
+                            Name min length of 3 character
+                        </div>
+                    </div>
+                </div>
+                <input [(ngModel)]="modelEntity.name" maxlength="30" minlength="3" required name="name" type="text" class="form-control" placeholder="Type model name">
+            </div>
+            <div class="form-group mb-2">
+                <div class="validation-container">
+                    <div *ngIf="createModelForm.dirty && createModelForm.controls['productionYear'].invalid" class="text-danger invalidValidation">
+                        <div *ngIf="createModelForm.controls['productionYear'].errors?.['required']">
+                            Production year is required field
+                        </div>
+                        <div *ngIf="createModelForm.controls['productionYear'].errors?.['max']">
+                            Production year can be between 1913 and 2022
+                        </div>
+                        <div *ngIf="createModelForm.controls['productionYear'].errors?.['min']">
+                            Production year can be between 1913 and 2022
+                        </div>
+                    </div>
+                </div>
+                <input [(ngModel)]="modelEntity.productionYear" [max]="2022" [min]="1913" required name="productionYear" type="number" class="form-control" placeholder="Type year">
+            </div>
+        </form>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success add-button float-end">Create fridge</button>
+    </div>
+</form>

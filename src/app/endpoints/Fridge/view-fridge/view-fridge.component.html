@@ -1,0 +1,78 @@
+<div class="container pt-4">
+    <div class="d-flex title-container">
+        <h2>DISPLAY {{productsList.length}} PRODUCTS</h2>
+        <div class="search-box">
+            <input class="search-txt" type="text" name="productName" placeholder="Type to search" [(ngModel)]="productsList.name" (ngModelChange)="Search()">
+            <a class="search-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+    <div class="pb-3">
+        <a class="btn btn-success mb-4" type="button" data-bs-toggle="modal" data-bs-target="#createProduct">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>
+            ADD PRODUCT
+        </a>
+    </div>
+    <div class="isEmptyFridge" *ngIf="productsList.length <= 0">
+        <p>this fridge is empty!</p>
+    </div>
+    <div class="row row-cols-4">
+        <div class="col mb-4" *ngFor="let product of productsList | paginate: {itemsPerPage: 16, currentPage: pages};">
+            <div class="card">
+                <img [src]='product.linkImage' class="card-img-top" alt="Not Found">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">Description for product.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item card-line">In stock: {{fridgeProductMap.get(product.id)}}</li>
+                </ul>
+                <div class="card-body">
+                    <a class="card-link" data-bs-toggle="modal" data-bs-target="#editProduct">Edit</a>
+                    <a class="card-link" (click)="deleteFridgeProduct(product)">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pagination-container">
+    <pagination-controls (pageChange)="pages = $event"></pagination-controls>
+</div>
+
+<!-- Modal for Create -->
+<div class="modal fade" id="createProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="staticBackdropLabel">Create Product</h5>
+                <button type="button" class="btn-close" id="create-product-modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-add-product [currentFridgeId]="currentFridgeId"></app-add-product>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Edit -->
+<div class="modal fade" id="editProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Product</h5>
+                <button type="button" class="btn-close" id="edit-product-modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-edit-product></app-edit-product>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer class="footer"></app-footer>

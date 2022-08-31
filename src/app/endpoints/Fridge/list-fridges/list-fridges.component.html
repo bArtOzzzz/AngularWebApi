@@ -1,0 +1,86 @@
+<div class="container pt-4">
+    <div class="d-flex title-container">
+        <h2>Display {{fridgesList.length}} fridges</h2>
+        <div class="search-box">
+            <input [(ngModel)]="fridgesList.manufacturer" (ngModelChange)="Search()" class="search-txt" type="text" name="fridgeSearch" placeholder="Type manufacturer to search">
+            <a class="search-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+    <div class="pb-3">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createFridge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>
+            CREATE FRIDGE
+        </button>
+    </div>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <th>Manufacturer</th>
+            <th>Owner Name</th>
+            <th>Fridge Model</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let fridge of fridgesList | paginate: {itemsPerPage: 6, currentPage: startPage}">
+                <td>{{fridge.manufacturer}}</td>
+                <td>{{fridge.ownerName}}</td>
+                <td>{{fridge.modelName}}</td>
+                <td>
+                    <a class="btn btn-info button-container" [routerLink]="['/fridges/view/', fridge.id]">View</a>
+                    <a class="btn btn-primary button-container" data-bs-toggle="modal" data-bs-target="#editFridge" (click)="modalEditOpen(fridge)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                        </svg>
+                        Edit
+                    </a>
+                    <a class="btn btn-danger button-container" (click)="deleteFridge(fridge.id)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="pagination-container">
+    <pagination-controls (pageChange)="startPage = $event"></pagination-controls>
+</div>
+
+<!-- Modal for Create -->
+<div class="modal fade" id="createFridge" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="staticBackdropLabel">Create Fridge</h5>
+                <button type="button" class="btn-close" id="create-fridge-modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-add-fridge></app-add-fridge>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Edit -->
+<div class="modal fade" id="editFridge" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Fridge</h5>
+                <button type="button" class="btn-close" id="edit-fridge-modal-close" data-bs-dismiss="modal" aria-label="Close" (click)="modalClose()"></button>
+            </div>
+            <div class="modal-body">
+                <app-edit-fridge [fridge]="fridge" *ngIf="activateModalComponent"></app-edit-fridge>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer class="footer"></app-footer>

@@ -1,0 +1,33 @@
+.register-content {
+    padding-top: 4vh;
+}
+
+.card {
+    border-radius: 25px;
+}
+
+.haveAccount  {
+    padding-bottom: 30px;
+}
+
+.loginLink {
+    text-decoration: underline;
+    font-weight: bold;
+    color: rgb(39, 39, 39);
+}
+
+.loginLink:hover {
+    text-decoration: none;
+    color: rgb(251, 105, 0);
+}
+
+.termsLink:hover {
+    text-decoration: none;
+    color: rgb(251, 105, 0);
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

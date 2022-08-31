@@ -1,0 +1,33 @@
+<form #createProductForm="ngForm" (ngSubmit)="createProductForm.form.valid && onSubmit()">
+    <div class="row row-cols-2">
+        <div class="form-group mb-3">
+            <div class="validation-container">
+                <div *ngIf="createProductForm.touched && createProductForm.controls['productId'].invalid" class="text-danger invalidValidation">
+                    <div *ngIf="createProductForm.controls['productId'].errors?.['required']">
+                        Product is required field
+                    </div>
+                </div>
+            </div>
+            <select [(ngModel)]="fridgeProductEntity.productId" required name="productId" class="form-control">
+                <option hidden value="">Please Select Product</option>
+                <option *ngFor="let product of productsList$ | async">{{product.name}}</option>
+            </select>
+        </div>
+        <div class="col">     
+            <div class="validation-container">
+                <div *ngIf="createProductForm.dirty && createProductForm.controls['productCount'].invalid" class="text-danger invalidValidation">
+                    <div *ngIf="createProductForm.controls['productCount'].errors?.['required']">
+                        Product count is required field
+                    </div>
+                    <div *ngIf="createProductForm.controls['productCount'].errors?.['max'] || createProductForm.controls['productCount'].errors?.['min']">
+                        Count have range from 0 to 999
+                    </div>
+                </div>
+            </div>
+            <input [(ngModel)]="fridgeProductEntity.productCount" [max]="999" [min]="0" maxlength="3" required name="productCount" type="number" class="form-control" placeholder="Type count">
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success add-button float-end">Create product</button>
+    </div>
+</form>

@@ -1,0 +1,26 @@
+.login,
+.signUp,
+.logout {
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    padding-right: 20px;
+}
+
+.login:hover,
+.signUp:hover,
+.logout:hover {
+    color: rgb(251, 105, 0);
+}
+
+.header {
+    z-index: 100;
+}
+
+.add-shadow {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.4),
+                0 1px 4px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(0, 0, 0, 0.1) inset;
+}

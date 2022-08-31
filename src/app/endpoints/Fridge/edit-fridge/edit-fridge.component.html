@@ -1,0 +1,44 @@
+<form #editForm="ngForm" (ngSubmit)="editForm.form.valid && editFridge()">
+    <div class="form-group mb-2">
+        <div class="validation-container">
+            <div *ngIf="editForm.dirty && editForm.controls['manufacturer'].invalid" class="text-danger invalidValidation">
+                <div *ngIf="editForm.controls['manufacturer'].errors?.['required']">
+                    Manufacturer is required field
+                </div>
+                <div *ngIf="editForm.controls['manufacturer'].errors?.['minlength']">
+                    Manufacturer min length of 2 character
+                </div>
+            </div>
+        </div>
+        <input [(ngModel)]="fridgeEntity.manufacturer" maxlength="30" minlength="2" required name="manufacturer" type="text" class="form-control" placeholder="Type manufacturer">
+    </div>
+    <div class="form-group mb-2">
+        <div class="validation-container">
+            <div *ngIf="editForm.dirty && editForm.controls['ownerName'].invalid" class="text-danger invalidValidation">
+                <div *ngIf="editForm.controls['ownerName'].errors?.['required']">
+                    Name is required field
+                </div>
+                <div *ngIf="editForm.controls['ownerName'].errors?.['minlength']">
+                    Name min length of 3 character
+                </div>
+            </div>
+        </div>
+        <input [(ngModel)]="fridgeEntity.ownerName" maxlength="30" minlength="3" required name="ownerName" type="text" class="form-control" placeholder="Type your name">
+    </div>
+    <div class="form-group mb-4">
+        <div class="validation-container">
+            <div *ngIf="editForm.touched && editForm.controls['modelId'].invalid" class="text-danger invalidValidation">
+                <div *ngIf="editForm.controls['modelId'].errors?.['required']">
+                    Model is required field
+                </div>
+            </div>
+        </div>
+        <select [(ngModel)]="fridgeEntity.modelId" required name="modelId" class="form-control">
+            <option hidden value="">Please Select Model</option>
+            <option *ngFor="let model of modelsList$ | async">{{model.name}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success add-button float-end">Edit fridge</button>
+    </div>
+</form>
