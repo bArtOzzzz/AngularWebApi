@@ -1,0 +1,76 @@
+<div class="container pt-4">
+    <div class="d-flex title-container">
+        <h2>Display {{modelList.length}} models</h2>
+        <div class="search-box">
+            <input [(ngModel)]="modelList.name" (ngModelChange)="Search()" class="search-txt" type="text" name="fridgeSearch" placeholder="Type manufacturer to search">
+            <a class="search-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+    <div class="pb-3">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModel">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>
+            CREATE MODEL
+        </button>
+    </div>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <th>Model Name</th>
+            <th>Production Year</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let model of modelList | paginate: {itemsPerPage: 5, currentPage: startPage};">
+                <td>{{model.name}}</td>
+                <td>{{model.productionYear}}</td>
+                <td>
+                    <a class="btn btn-primary button-container" data-bs-toggle="modal" data-bs-target="#updateModel" (click)="getCurrentModel(model.id)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg>
+                        Edit
+                    </a>
+                    <a class="btn btn-danger button-container" (click)="deleteModel(model.id)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6.5 1a.5.5 0 0 0-.5.5v1h4v-1a.5.5 0 0 0-.5-.5h-3ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1H3.042l.846 10.58a1 1 0 0 0 .997.92h6.23a1 1 0 0 0 .997-.92l.846-10.58Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/></svg>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="pagination-container">
+    <pagination-controls (pageChange)="startPage = $event"></pagination-controls>
+</div>
+
+<!-- Modal for create a new model-->
+<div class="modal fade" id="createModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+            <h5 class="modal-title" id="staticBackdropLabel">Create model</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="create-model-modal-close"></button>
+            </div>
+            <div class="modal-body">
+               <app-add-model></app-add-model>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for update model-->
+<div class="modal fade" id="updateModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+            <h5 class="modal-title" id="staticBackdropLabel">Update model</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="update-model-modal-close"></button>
+            </div>
+            <div class="modal-body">
+               <app-edit-model [modelId]="modelId"></app-edit-model>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer class="footer"></app-footer>

@@ -10,9 +10,10 @@
                 </div>
             </div>
         </div>
-        <input [(ngModel)]="fridgeProductEntity.productCount"  [max]="999" [min]="0" maxlength="3" required name="productCount" type="text" class="form-control" placeholder="Type count">
+        <label for="">Product count:</label>
+        <input [(ngModel)]="fridgeProductEntity.productCount" [max]="999" [min]="0" maxlength="3" required name="productCount" type="text" class="form-control" placeholder="Type count">
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-success add-button float-end">Create fridge</button>
+        <button type="submit" class="btn btn-success add-button float-end">Edit product</button>
     </div>
 </form>

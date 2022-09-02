@@ -36,7 +36,6 @@ export class AddProductComponent implements OnInit {
         this.fridgeProductEntity.productId = this.productsList[i].id;
       }
     }
-
     this.fridgeService.createFridgeProduct(this.currentFridgeId, this.fridgeProductEntity).subscribe(data => {
       var closeModalBtn = document.getElementById('create-product-modal-close');
         if(closeModalBtn) {

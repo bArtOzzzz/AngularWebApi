@@ -51,7 +51,6 @@ export class ListFridgesComponent implements OnInit {
   deleteFridge(fridgeId: string) {
     if(confirm(`Are you sure you want to delete this fridge?`)) {
       this.fridgeService.deleteFridge(fridgeId).subscribe(res => {
-        console.log("Fridge successfully deleted")
         setTimeout(function() {
           window.location.reload();
         }, 500)

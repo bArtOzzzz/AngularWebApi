@@ -23,7 +23,7 @@
         <p>this fridge is empty!</p>
     </div>
     <div class="row row-cols-4">
-        <div class="col mb-4" *ngFor="let product of productsList | paginate: {itemsPerPage: 16, currentPage: pages};">
+        <div class="col mb-4" *ngFor="let product of productsList | paginate: {itemsPerPage: 16, currentPage: pages}; let i = index">
             <div class="card">
                 <img [src]='product.linkImage' class="card-img-top" alt="Not Found">
                 <div class="card-body">
@@ -31,10 +31,10 @@
                     <p class="card-text">Description for product.</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item card-line">In stock: {{fridgeProductMap.get(product.id)}}</li>
+                    <li class="list-group-item card-line" *ngIf="i < currentFridgeProducts.length">In stock: {{currentFridgeProducts[i].productCount}}</li>
                 </ul>
                 <div class="card-body">
-                    <a class="card-link" data-bs-toggle="modal" data-bs-target="#editProduct">Edit</a>
+                    <a class="card-link" data-bs-toggle="modal" data-bs-target="#editProduct" (click)="getProductId(product.id)">Edit</a>
                     <a class="card-link" (click)="deleteFridgeProduct(product)">Delete</a>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                 <button type="button" class="btn-close" id="edit-product-modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <app-edit-product></app-edit-product>
+                <app-edit-product [currentFridgeId]="currentFridgeId" [productId]="productId" [fridgeProductId]="fridgeProductId"></app-edit-product>
             </div>
         </div>
     </div>

@@ -12,6 +12,9 @@ export class ViewFridgeComponent implements OnInit {
   fridgeProductsList: any=[];
   pages: number = 1;
   currentFridgeId!: string;
+  currentFridgeProducts: any=[];
+  productId!: string;
+  fridgeProductId!: string;
 
   fridgeProductMap: Map<any, any> = new Map();
 
@@ -20,7 +23,8 @@ export class ViewFridgeComponent implements OnInit {
   ngOnInit(): void {
     this.getFridgeId();
     this.getProducts();
-    this.getFridgeProductMap();
+    this.getFridgeProducts();
+    this.getFrigdeProductByProductId();
   }
 
    getFridgeId() {
@@ -38,6 +42,20 @@ export class ViewFridgeComponent implements OnInit {
         return res.name.toLocaleLowerCase().match(this.productsList.name.toLocaleLowerCase());
       })
     }
+  }
+
+  getProductId(productId: string) {
+    this.productId = productId;
+    for(let i = 0; i < this.fridgeProductsList.length; i++) {
+      if(productId ==  this.fridgeProductsList[i].productId)
+        this.fridgeProductId = this.fridgeProductsList[i].id;
+    }
+  }
+
+  getFridgeProducts() {
+    this.fridgeService.getFridgeProducts().subscribe(data => {
+      this.fridgeProductsList = data;
+    })
   }
 
   getProducts() {
@@ -62,12 +80,9 @@ export class ViewFridgeComponent implements OnInit {
     }
   }
 
-  getFridgeProductMap() {
-    this.fridgeService.getFridgeProducts().subscribe(data => {
-      this.fridgeProductsList = data;
-      for(let i = 0 ; i < data.length; i++) {
-        this.fridgeProductMap.set(this.fridgeProductsList[i].productId, this.fridgeProductsList[i].productCount);
-      }
+  getFrigdeProductByProductId() {
+    this.fridgeService.getFridgeProductByProductId(this.currentFridgeId).subscribe(data => {
+      this.currentFridgeProducts = data;
     })
   }
 }

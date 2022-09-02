@@ -12,6 +12,11 @@ import { ListFridgesComponent } from './Fridge/list-fridges/list-fridges.compone
 import { EditFridgeComponent } from './Fridge/edit-fridge/edit-fridge.component';
 import { AddProductComponent } from './Products/add-product/add-product.component';
 import { EditProductComponent } from './Products/edit-product/edit-product.component';
+import { ListModelsComponent } from './Model/list-models/list-models.component';
+import { AddModelComponent } from './Model/add-model/add-model.component';
+import { EditModelComponent } from './Model/edit-model/edit-model.component';
+import { ListProductsComponent } from './Products/list-products/list-products.component';
+import { AddNewProductComponent } from './Products/add-new-product/add-new-product.component';
 
 
 
@@ -22,7 +27,12 @@ import { EditProductComponent } from './Products/edit-product/edit-product.compo
     EditFridgeComponent,
     ViewFridgeComponent,
     AddProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    ListModelsComponent,
+    AddModelComponent,
+    EditModelComponent,
+    ListProductsComponent,
+    AddNewProductComponent
   ],
   imports: [
     CommonModule,

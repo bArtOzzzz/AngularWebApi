@@ -77,6 +77,10 @@ export class FridgeService {
     return this.http.get<any>(this.baseUrl + 'fridgeProducts/' + fridgeId + '/products');
   }
 
+  getFridgeProductByProductId(productId: string): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'fridgeProducts/' + productId + '/fridgeProduct');
+  }
+
   updateFridgeProduct(fridgeProductId: string, data: any) {
     return this.http.put(this.baseUrl + 'fridgeProducts/' + fridgeProductId, data, {responseType: "text"});
   }

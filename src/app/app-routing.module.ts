@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListFridgesComponent } from './endpoints/Fridge/list-fridges/list-fridges.component';
 import { ViewFridgeComponent } from './endpoints/Fridge/view-fridge/view-fridge.component';
+import { ListModelsComponent } from './endpoints/Model/list-models/list-models.component';
+import { ListProductsComponent } from './endpoints/Products/list-products/list-products.component';
 import { HomeComponent } from './layout/home/home.component';
 import { LoginComponent } from './layout/login/login.component';
 import { RegisterComponent } from './layout/register/register.component';
@@ -18,6 +20,16 @@ const routes: Routes = [
       { path: 'list', component: ListFridgesComponent },
       { path: 'view/:id', component:ViewFridgeComponent }
     ], canActivate:[AuthGuard]
+  },
+  { path: 'models', 
+    children: [
+      { path: 'list', component: ListModelsComponent }
+    ], canActivate:[AuthGuard] 
+  },
+  { path: 'products', 
+    children: [
+      { path: 'list', component: ListProductsComponent }
+    ], canActivate:[AuthGuard] 
   },
 ];
 

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { FridgeProduct } from 'src/app/models/fridgeProduct';
 import { FridgeService } from 'src/app/services/fridge.service';
 
@@ -11,43 +10,35 @@ import { FridgeService } from 'src/app/services/fridge.service';
 export class EditProductComponent implements OnInit {
   fridgeProductEntity = new FridgeProduct();
   @Input() currentFridgeId!: string;
-
-  fridgeProductsList!: Observable<any[]>;
+  @Input() productId!: string;
+  @Input() fridgeProductId!: string;
+  currentFridgeProducts: any=[];
 
   constructor(private fridgeService: FridgeService) { }
 
   ngOnInit(): void {
-    this.getFridgeProducts();
   }
 
   onSubmit() {
     this.editProduct();
   }
 
-  getFridgeProducts() {
-    this.fridgeService.getFridgeProducts().subscribe(data => {
-      this.fridgeProductsList = data;
-    })
-  }
-
   editProduct() {
-    var fridgeProduct = {
-      productCount: this.fridgeProductEntity.productCount,
-      fridgeId: this.currentFridgeId,
-      productId: this.fridgeProductEntity.productId
+    this.fridgeProductEntity.productId = this.productId;
+    this.fridgeProductEntity.FridgeId = this.currentFridgeId;
+    
+    for(let i = 0; i < this.currentFridgeProducts.length; i++) {
+      console.log(this.currentFridgeProducts[i]);
     }
 
-    console.log(fridgeProduct);
-    console.log(this.fridgeProductEntity.id);
-
-    // this.fridgeService.updateFridgeProduct(this.fridgeProductEntity.id, fridgeProduct).subscribe(data => {
-    //   var closeModalBtn = document.getElementById('edit-product-modal-close');
-    //     if(closeModalBtn) {
-    //       closeModalBtn.click();
-    //     }
-    //     setTimeout(function() {
-    //       window.location.reload();
-    //     }, 500)
-    // })
+    this.fridgeService.updateFridgeProduct(this.fridgeProductId, this.fridgeProductEntity).subscribe(data => {
+      var closeModalBtn = document.getElementById('edit-product-modal-close');
+        if(closeModalBtn) {
+          closeModalBtn.click();
+        }
+        setTimeout(function() {
+          window.location.reload();
+        }, 500)
+    })
   }
 }
