@@ -11,6 +11,8 @@ export class ListProductsComponent implements OnInit {
   productEntity = new Product();
   productsList: any=[];
   startPage: number = 1;
+  activateModalComponent: boolean = false;
+  product: any;
 
   fridgeProductMap: Map<any, any> = new Map();
 
@@ -31,6 +33,17 @@ export class ListProductsComponent implements OnInit {
     }
   }
 
+    // Response to "modalCreateOpen" event
+    modalEditOpen(product:any) {
+      this.product = product;
+      this.activateModalComponent = true;
+    }
+  
+    // Response to "modalCreateClose" event
+    modalClose() {
+      this.activateModalComponent = false;
+    }
+
   getProducts() {
     this.fridgeService.getProducts().subscribe(data => {
       this.productsList = data;
@@ -38,6 +51,12 @@ export class ListProductsComponent implements OnInit {
   }
 
   deleteProduct(productId: string) {
-
+    if(confirm(`Are you sure you want to delete this product? \nThis action delete all products from user's fridges.`)) {
+      this.fridgeService.deleteProduct(productId).subscribe(res => {
+        setTimeout(function() {
+          window.location.reload();
+        }, 500)
+      })
+    }
   }
 }

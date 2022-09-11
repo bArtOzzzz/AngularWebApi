@@ -1,11 +1,11 @@
-<form #createProductForm="ngForm" (ngSubmit)="createProductForm.form.valid && onSubmit()">
+<form #editProductForm="ngForm" (ngSubmit)="editProductForm.form.valid && onSubmit()">
     <div class="form-group mb-3">
         <div class="validation-container">
-            <div *ngIf="createProductForm.dirty && createProductForm.controls['name'].invalid" class="text-danger invalidValidation">
-                <div *ngIf="createProductForm.controls['name'].errors?.['required']">
+            <div *ngIf="editProductForm.dirty && editProductForm.controls['name'].invalid" class="text-danger invalidValidation">
+                <div *ngIf="editProductForm.controls['name'].errors?.['required']">
                     Product is required field
                 </div>
-                <div *ngIf="createProductForm.controls['name'].errors?.['minlength']">
+                <div *ngIf="editProductForm.controls['name'].errors?.['minlength']">
                     Product min length of 3 character
                 </div>
             </div>
@@ -16,6 +16,6 @@
         <input [(ngModel)]="productEntity.linkImage" name="url" type="text" class="form-control input-url" placeholder="URL">
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-success add-button float-end">Create product</button>
+        <button type="submit" class="btn btn-success add-button float-end">Edit product</button>
     </div>
 </form>

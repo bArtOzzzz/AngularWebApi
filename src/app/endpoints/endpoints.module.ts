@@ -17,6 +17,7 @@ import { AddModelComponent } from './Model/add-model/add-model.component';
 import { EditModelComponent } from './Model/edit-model/edit-model.component';
 import { ListProductsComponent } from './Products/list-products/list-products.component';
 import { AddNewProductComponent } from './Products/add-new-product/add-new-product.component';
+import { EditNewProductComponent } from './Products/edit-new-product/edit-new-product.component';
 
 
 
@@ -32,7 +33,8 @@ import { AddNewProductComponent } from './Products/add-new-product/add-new-produ
     AddModelComponent,
     EditModelComponent,
     ListProductsComponent,
-    AddNewProductComponent
+    AddNewProductComponent,
+    EditNewProductComponent
   ],
   imports: [
     CommonModule,

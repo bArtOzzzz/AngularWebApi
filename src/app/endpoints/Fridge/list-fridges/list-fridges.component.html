@@ -21,13 +21,15 @@
     </div>
     <table class="table table-hover table-bordered">
         <thead>
+            <th>№</th>
             <th>Manufacturer</th>
             <th>Owner Name</th>
             <th>Fridge Model</th>
             <th>Actions</th>
         </thead>
         <tbody>
-            <tr *ngFor="let fridge of fridgesList | paginate: {itemsPerPage: 6, currentPage: startPage}">
+            <tr *ngFor="let fridge of fridgesList | paginate: {itemsPerPage: 6, currentPage: startPage}; let i=index">
+                <td>{{i + 1}}</td>
                 <td>{{fridge.manufacturer}}</td>
                 <td>{{fridge.ownerName}}</td>
                 <td>{{fridge.modelName}}</td>

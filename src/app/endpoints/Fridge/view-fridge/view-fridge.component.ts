@@ -75,7 +75,7 @@ export class ViewFridgeComponent implements OnInit {
       this.fridgeService.deleteFridgeProduct(currentFridgeProductId.id).subscribe(res => {
         setTimeout(function() {
           window.location.reload();
-        }, 500)
+        }, 700)
       })
     }
   }

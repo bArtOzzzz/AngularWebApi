@@ -18,12 +18,14 @@
     </div>
     <table class="table table-hover table-bordered">
         <thead>
+            <th>№</th>
             <th>Model Name</th>
             <th>Production Year</th>
             <th>Actions</th>
         </thead>
         <tbody>
-            <tr *ngFor="let model of modelList | paginate: {itemsPerPage: 5, currentPage: startPage};">
+            <tr *ngFor="let model of modelList | paginate: {itemsPerPage: 5, currentPage: startPage}; let i = index">
+                <td>{{i + 1}}</td>
                 <td>{{model.name}}</td>
                 <td>{{model.productionYear}}</td>
                 <td>
