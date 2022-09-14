@@ -14,8 +14,6 @@ export class ListProductsComponent implements OnInit {
   activateModalComponent: boolean = false;
   product: any;
 
-  fridgeProductMap: Map<any, any> = new Map();
-
   constructor(private fridgeService:FridgeService) { }
 
   ngOnInit(): void {

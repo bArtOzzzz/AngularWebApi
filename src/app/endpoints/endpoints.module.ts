@@ -18,6 +18,11 @@ import { EditModelComponent } from './Model/edit-model/edit-model.component';
 import { ListProductsComponent } from './Products/list-products/list-products.component';
 import { AddNewProductComponent } from './Products/add-new-product/add-new-product.component';
 import { EditNewProductComponent } from './Products/edit-new-product/edit-new-product.component';
+import { ListUsersComponent } from './Users/list-users/list-users.component';
+import { ListRolesComponent } from './Role/list-roles/list-roles.component';
+import { AddRoleComponent } from './Role/add-role/add-role.component';
+import { EditRoleComponent } from './Role/edit-role/edit-role.component';
+import { ChangeRoleComponent } from './Users/change-role/change-role.component';
 
 
 
@@ -34,7 +39,12 @@ import { EditNewProductComponent } from './Products/edit-new-product/edit-new-pr
     EditModelComponent,
     ListProductsComponent,
     AddNewProductComponent,
-    EditNewProductComponent
+    EditNewProductComponent,
+    ListUsersComponent,
+    ListRolesComponent,
+    AddRoleComponent,
+    EditRoleComponent,
+    ChangeRoleComponent
   ],
   imports: [
     CommonModule,

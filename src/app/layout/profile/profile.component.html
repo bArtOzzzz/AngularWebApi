@@ -1,0 +1,271 @@
+<section class="profile">
+    <div class="title-container">
+        <div class="card container profile-header">
+            <div class="title">
+                <p>Welcome back <span class="username">{{currentUser.username}}</span>!</p>
+            </div>
+            <div class="container">
+                <div class="d-flex edit-profile-container">
+                    <div class="title-info">
+                        <p class="info-header">Main Information:</p>
+                    </div>
+                    <div class="pb-3">
+                        <button class="btn btn-info edit-btn" data-bs-toggle="modal" data-bs-target="#updateProfile">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg>
+                            EDIT PROFILE
+                        </button>
+                    </div>
+                </div>
+                <table class="table table-hover table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="item">Username</td>
+                            <td class="item">{{currentUser.username}}</td>
+                            <td>
+                                <a class="btn btn-primary edit-button" data-bs-toggle="modal" data-bs-target="#updateUsername">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg>
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="item">Email:</td>
+                            <td class="item">{{currentUser.emailAddress}}</td>
+                            <td>
+                                <a class="btn btn-primary edit-button" data-bs-toggle="modal" data-bs-target="#updateEmailAddress">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg>
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="item">Role:</td>
+                            <td class="item">{{userRole}}</td>
+                        </tr>
+                        <tr>
+                            <td class="item">Password:</td>
+                            <td class="item">·····················</td>
+                            <td>
+                                <a class="btn btn-primary edit-button" data-bs-toggle="modal" data-bs-target="#updatePassword">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/></svg>
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="item">Created account date:</td>
+                            <td class="item">{{currentUser.createdDate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <a class="btn btn-danger button-container" (click)="deleteUserProfile()">
+                    Delete profile
+                </a>
+            </div>
+        </div>
+    </div>
+</section>               
+
+<!-- Modal for update profile-->
+<div class="modal fade" id="updateProfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Name</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="edit-user-modal-close" (click)="modalClose()"></button>
+            </div>
+            <div class="modal-body">
+                <form #editProfile="ngForm" (ngSubmit)="editProfile.form.valid && editUserProfile()" class="mx-1 mx-md-4">
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <div class="validation-container">
+                                <div class="text-danger invalidValidation" *ngIf="editProfile.dirty && editProfile.controls['username'].invalid">
+                                    <div *ngIf="editProfile.controls['username'].errors?.['required']">
+                                        Name is required field!
+                                    </div>
+                                    <div *ngIf="editProfile.controls['username'].errors?.['minlength']">
+                                        Name min length of 3 character
+                                    </div>
+                                </div>
+                            </div>
+                            <input [(ngModel)]="userData.username" maxlength="30" minlength="3" required name="username" type="text" class="form-control" placeholder="Your Name"/>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <div class="validation-container">
+                                <div class="text-danger invalidValidation" *ngIf="editProfile.dirty && editProfile.controls['emailAddress'].invalid">
+                                    <div *ngIf="editProfile.controls['emailAddress'].errors?.['required']">
+                                        Email is required field!
+                                    </div>
+                                    <div *ngIf="editProfile.controls['emailAddress'].errors?.['pattern']">
+                                        Incorrect email format
+                                    </div>
+                                </div>  
+                            </div>
+                            <input [(ngModel)]="userData.emailAddress" maxlength="30" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" name="emailAddress" type="email" class="form-control" placeholder="Enter Email"/>
+                        </div>
+                    </div>
+                    <!-- Password field -->
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <div class="validation-container">
+                                <div class="text-danger invalidValidation" *ngIf="editProfile.dirty && editProfile.controls['password'].invalid">
+                                    <div *ngIf="editProfile.controls['password'].errors?.['required']">
+                                        Password is required field!
+                                    </div>
+                                    <div *ngIf="editProfile.controls['password'].errors?.['minlength']">
+                                        Password min length of 8 character!
+                                    </div>
+                                </div>
+                            </div>
+                            <input required maxlength="30" minlength="8" [(ngModel)]="userData.password" name="password" type="password" class="form-control" placeholder="Password"/>
+                        </div>
+                    </div>
+                    <!-- Password Repeate field -->
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <div class="validation-container">
+                                <div class="text-danger invalidValidation" *ngIf="editProfile.dirty">
+                                    <div *ngIf="editProfile.value.password != repeatPassword">
+                                        Passwords must match
+                                    </div>
+                                </div>
+                            </div>
+                            <input required [(ngModel)]="repeatPassword" maxlength="30" name="repeatPassword" type="password" class="form-control" placeholder="Repeat Password"/>
+                        </div>
+                    </div>     
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success edit-button float-end">Edit Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for update username-->
+<div class="modal fade" id="updateUsername" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Name</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="edit-user-modal-close" (click)="modalClose()"></button>
+            </div>
+            <div class="modal-body">
+                <form #editForm="ngForm" (ngSubmit)="editForm.form.valid && editUsername()" class="mx-1 mx-md-4">
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <div class="validation-container">
+                                <div class="text-danger invalidValidation" *ngIf="editForm.dirty && editForm.controls['username'].invalid">
+                                    <div *ngIf="editForm.controls['username'].errors?.['required']">
+                                        Name is required field!
+                                    </div>
+                                    <div *ngIf="editForm.controls['username'].errors?.['minlength']">
+                                        Name min length of 3 character
+                                    </div>
+                                </div>
+                            </div>
+                            <input [(ngModel)]="userData.username" maxlength="30" minlength="3" required name="username" type="text" class="form-control" placeholder="Your Name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success edit-button float-end">Edit Name</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for update email address-->
+<div class="modal fade" id="updateEmailAddress" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Email</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="edit-user-modal-close" (click)="modalClose()"></button>
+            </div>
+            <div class="modal-body">
+                <form #editEmailForm="ngForm" (ngSubmit)="editEmailForm.form.valid && editEmailAddress()" class="mx-1 mx-md-4">
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <div class="validation-container">
+                                <div class="text-danger invalidValidation" *ngIf="editEmailForm.dirty && editEmailForm.controls['emailAddress'].invalid">
+                                    <div *ngIf="editEmailForm.controls['emailAddress'].errors?.['required']">
+                                        Email is required field!
+                                    </div>
+                                    <div *ngIf="editEmailForm.controls['emailAddress'].errors?.['pattern']">
+                                        Incorrect email format
+                                    </div>
+                                </div>  
+                            </div>
+                            <input [(ngModel)]="userData.emailAddress" maxlength="30" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" name="emailAddress" type="email" class="form-control" placeholder="Enter Email"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success edit-button float-end">Edit email</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for update password-->
+<div class="modal fade" id="updatePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="edit-user-modal-close" (click)="modalClose()"></button>
+            </div>
+            <div class="modal-body">
+                <form #editPasswordForm="ngForm" (ngSubmit)="editPasswordForm.form.valid && editPassword()" class="mx-1 mx-md-4"> 
+                    <!-- Password field -->
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <div class="validation-container">
+                                <div class="text-danger invalidValidation" *ngIf="editPasswordForm.dirty && editPasswordForm.controls['password'].invalid">
+                                    <div *ngIf="editPasswordForm.controls['password'].errors?.['required']">
+                                        Password is required field!
+                                    </div>
+                                    <div *ngIf="editPasswordForm.controls['password'].errors?.['minlength']">
+                                        Password min length of 8 character!
+                                    </div>
+                                </div>
+                            </div>
+                            <input required maxlength="30" minlength="8" [(ngModel)]="userData.password" name="password" type="password" class="form-control" placeholder="Password"/>
+                        </div>
+                    </div>
+                    <!-- Password Repeate field -->
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                            <div class="validation-container">
+                                <div class="text-danger invalidValidation" *ngIf="editPasswordForm.dirty">
+                                    <div *ngIf="editPasswordForm.value.password != repeatPassword">
+                                        Passwords must match
+                                    </div>
+                                </div>
+                            </div>
+                            <input required [(ngModel)]="repeatPassword" name="repeatPassword" type="password" class="form-control" placeholder="Repeat Password"/>
+                        </div>
+                    </div>     
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success edit-button float-end">Edit Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

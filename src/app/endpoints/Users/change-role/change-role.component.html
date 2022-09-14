@@ -1,0 +1,18 @@
+<form #createFormWithoutModel="ngForm" (ngSubmit)="createFormWithoutModel.form.valid && onSubmit()">
+    <div class="form-group mb-3">
+        <div class="validation-container">
+            <div *ngIf="createFormWithoutModel.touched && createFormWithoutModel.controls['modelId'].invalid" class="text-danger invalidValidation">
+                <div *ngIf="createFormWithoutModel.controls['modelId'].errors?.['required']">
+                    Role is required field
+                </div>
+            </div>
+        </div>
+        <select [(ngModel)]="roleData.role" required name="modelId" class="form-control">
+            <option hidden value="">Please Select Role</option>
+            <option *ngFor="let role of rolesList$ | async">{{role.role}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success add-button float-end">Change</button>
+    </div>
+</form>

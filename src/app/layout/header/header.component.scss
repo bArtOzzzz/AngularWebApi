@@ -1,6 +1,7 @@
 .login,
 .signUp,
-.logout {
+.logout,
+.profile {
     color: white;
     cursor: pointer;
     font-size: 18px;
@@ -9,7 +10,8 @@
 
 .login:hover,
 .signUp:hover,
-.logout:hover {
+.logout:hover,
+.profile:hover {
     color: rgb(251, 105, 0);
 }
 

@@ -43,11 +43,11 @@ export class AuthInterceptor implements HttpInterceptor {
           catchError((error) => {
             this.fridgeService.Logout();
             this.fridgeService.profile.next(null);
-            return throwError(() => 'Invalid Call \n' + error)
+            return throwError(() => 'Invalid Call \n {Info: Exception in interceptor} \n' + error)
           })
         )
       }
     }
-    return throwError(() => 'Invalid Call {Error in interceptor}');
+    return throwError(() => 'Invalid Call {Info: Exception in interceptor}');
   }
 }

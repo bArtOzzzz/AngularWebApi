@@ -4,8 +4,11 @@ import { ListFridgesComponent } from './endpoints/Fridge/list-fridges/list-fridg
 import { ViewFridgeComponent } from './endpoints/Fridge/view-fridge/view-fridge.component';
 import { ListModelsComponent } from './endpoints/Model/list-models/list-models.component';
 import { ListProductsComponent } from './endpoints/Products/list-products/list-products.component';
+import { ListRolesComponent } from './endpoints/Role/list-roles/list-roles.component';
+import { ListUsersComponent } from './endpoints/Users/list-users/list-users.component';
 import { HomeComponent } from './layout/home/home.component';
 import { LoginComponent } from './layout/login/login.component';
+import { ProfileComponent } from './layout/profile/profile.component';
 import { RegisterComponent } from './layout/register/register.component';
 import { AuthGuard } from './shared/auth.guard';
 
@@ -14,23 +17,49 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'fridges',
     children: [
       { path: '', component: ListFridgesComponent },
       { path: 'list', component: ListFridgesComponent },
       { path: 'view/:id', component:ViewFridgeComponent }
-    ], canActivate:[AuthGuard]
+    ], canActivate:[AuthGuard],
+    data: {
+      roles: ['Administrator', 'User']
+    }
   },
   { path: 'models', 
     children: [
       { path: 'list', component: ListModelsComponent }
-    ], canActivate:[AuthGuard] 
+    ], canActivate:[AuthGuard],
+    data: {
+      roles: ['Administrator', 'User']
+    }
   },
   { path: 'products', 
     children: [
       { path: 'list', component: ListProductsComponent }
-    ], canActivate:[AuthGuard] 
+    ], canActivate:[AuthGuard],
+    data: {
+      roles: ['Administrator', 'User']
+    }
   },
+  { path: 'users',
+    children: [
+      { path: 'list', component: ListUsersComponent }
+    ], canActivate:[AuthGuard],
+    data: {
+      roles: ['Administrator']
+    }
+  },
+  { path: 'roles',
+    children: [
+      { path: 'list', component: ListRolesComponent }
+    ], canActivate:[AuthGuard],
+    data: {
+      roles: ['Administrator']
+    }
+  }
 ];
 
 @NgModule({

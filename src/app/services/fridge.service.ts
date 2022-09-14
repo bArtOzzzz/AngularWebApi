@@ -150,4 +150,58 @@ export class FridgeService {
   isExist(username: string) {
     return this.http.get<boolean>(this.baseUrl + 'exist/' + username);
   }
+
+  //___________________________________________________User_____________________________________________________
+  getUsers():Observable<any[]> {
+    return this.http.get<any>(this.baseUrl + 'users');
+  }
+
+  getUser(userId: string):Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'users/' + userId);
+  }
+
+  updateUser(userId: string, data: any) {
+    return this.http.put(this.baseUrl + 'users/' + userId, data, {responseType: "text"});
+  }
+
+  updateUserName(userId: string, data: any) {
+    return this.http.put(this.baseUrl + 'users/name/' + userId, data, {responseType: "text"});
+  }
+
+  updateUserEmail(userId: string, data: any) {
+    return this.http.put(this.baseUrl + 'users/email/' + userId, data, {responseType: "text"});
+  }
+
+  updateUserPassword(userId: string, data: any) {
+    return this.http.put(this.baseUrl + 'users/password/' + userId, data, {responseType: "text"});
+  }
+
+  deleteUser(userId: string):Observable<any> {
+    return this.http.delete(this.baseUrl + 'users/' + userId, {responseType: "text"});
+  }
+
+   //___________________________________________________Role_____________________________________________________
+  getRoles():Observable<any[]> {
+    return this.http.get<any>(this.baseUrl + 'roles/');
+  }
+  
+  getRole(roleId: string):Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'roles/' + roleId);
+  }
+
+  createRole(data: any) {
+    return this.http.post(this.baseUrl + 'roles/', data, {responseType: "text"});
+  }
+
+  updateRole(roleId: string, data: any) {
+    return this.http.put(this.baseUrl + 'roles/' + roleId, data, {responseType: "text"});
+  }
+
+  updateRoleByUser(userId: string, data: any) {
+    return this.http.put(this.baseUrl + 'roles/updateUserRole/' + userId, data, {responseType: "text"});
+  }
+
+  deleteRole(roleId: string) {
+    return this.http.delete(this.baseUrl + 'roles/' + roleId, {responseType: "text"});
+  }
 }

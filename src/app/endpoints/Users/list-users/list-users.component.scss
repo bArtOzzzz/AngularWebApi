@@ -1,0 +1,40 @@
+.container {
+    min-height: calc(100vh - 280px);
+}
+
+.title-container {
+    padding-top: 30px;
+    padding-bottom: 1em;
+}
+
+h2 {
+    text-transform: uppercase;
+}
+
+.title-container {
+    padding-top: 30px;
+    padding-bottom: 1em;
+}
+
+.modal-title {
+    color: white;
+}
+
+.btn-close {
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    border: 2px solid rgb(0, 0, 0);
+}
+
+.btn-close:hover {
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.table-img {
+    height: 40px;
+    width: 50px;
+}
+
+.item {
+    font-size: 18px;
+}
