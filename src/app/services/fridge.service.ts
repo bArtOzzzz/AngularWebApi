@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, catchError, map, Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { Fridge } from '../models/fridge';
 import { Token } from '../models/Token';
 import { User } from '../models/User';
@@ -16,10 +16,15 @@ export class FridgeService {
   constructor(private http: HttpClient, private router:Router) { }
   jwtHelper = new JwtHelperService;
   profile = new BehaviorSubject<User | null>(null);
+  userData: any;
 
   //___________________________________________________Fridge___________________________________________________
-  getFridges():Observable<any[]> {
-    return this.http.get<any>(this.baseUrl + 'fridges');
+  getFridges(userId: string):Observable<any[]> {
+    return this.http.get<any>(this.baseUrl + 'fridges/' + userId);
+  } 
+
+  getAllFridges():Observable<any[]> {
+    return this.http.get<any>(this.baseUrl + 'fridges/');
   } 
 
   updateFridge(fridgeId: string, data: any) {
@@ -113,6 +118,12 @@ export class FridgeService {
     })));
   }
 
+  getUserData() {
+    const currentUser = localStorage.getItem('tokens');
+    var token = JSON.parse(currentUser!) as Token;
+    this.userData = this.jwtHelper.decodeToken(token.accessToken) as User;
+  }
+
   IsLoggedIn() {
     var localStorageToken = localStorage.getItem('tokens');
     if(localStorageToken == null) {
@@ -174,6 +185,10 @@ export class FridgeService {
 
   updateUserPassword(userId: string, data: any) {
     return this.http.put(this.baseUrl + 'users/password/' + userId, data, {responseType: "text"});
+  }
+
+  resetPassword(userId: string) {
+    return this.http.put(this.baseUrl + 'users/reset/' + userId, null, {responseType: "text"});
   }
 
   deleteUser(userId: string):Observable<any> {

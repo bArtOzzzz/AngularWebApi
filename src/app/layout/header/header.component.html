@@ -10,6 +10,9 @@
                     <a class="nav-link" [routerLink]="['/fridges/list']">Fridges</a>
                 </li>
                 <li *ngIf="isAuth" class="nav-item">
+                    <a class="nav-link" [routerLink]="['allFridges/list']">All Fridges</a>
+                </li>
+                <li *ngIf="isAuth" class="nav-item">
                     <a class="nav-link" [routerLink]="['models/list']">Models</a>
                 </li>
                 <li *ngIf="isAuth" class="nav-item">

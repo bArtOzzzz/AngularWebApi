@@ -37,7 +37,7 @@ export class ListModelsComponent implements OnInit {
   }
 
   getFridges() {
-    this.fridgeService.getFridges().subscribe(data => {
+    this.fridgeService.getAllFridges().subscribe(data => {
       this.fridgeList = data;
     })
   }

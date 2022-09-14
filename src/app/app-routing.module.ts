@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ListAllFridgesComponent } from './endpoints/Fridge/list-all-fridges/list-all-fridges.component';
 import { ListFridgesComponent } from './endpoints/Fridge/list-fridges/list-fridges.component';
 import { ViewFridgeComponent } from './endpoints/Fridge/view-fridge/view-fridge.component';
 import { ListModelsComponent } from './endpoints/Model/list-models/list-models.component';
@@ -28,12 +29,20 @@ const routes: Routes = [
       roles: ['Administrator', 'User']
     }
   },
+  { path: 'allFridges',
+    children: [
+      { path: 'list', component: ListAllFridgesComponent },
+    ], canActivate:[AuthGuard],
+    data: {
+      roles: ['Administrator']
+    }
+  },
   { path: 'models', 
     children: [
       { path: 'list', component: ListModelsComponent }
     ], canActivate:[AuthGuard],
     data: {
-      roles: ['Administrator', 'User']
+      roles: ['Administrator']
     }
   },
   { path: 'products', 
@@ -41,7 +50,7 @@ const routes: Routes = [
       { path: 'list', component: ListProductsComponent }
     ], canActivate:[AuthGuard],
     data: {
-      roles: ['Administrator', 'User']
+      roles: ['Administrator']
     }
   },
   { path: 'users',

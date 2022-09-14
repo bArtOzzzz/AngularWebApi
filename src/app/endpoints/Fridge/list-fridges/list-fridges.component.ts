@@ -15,12 +15,13 @@ export class ListFridgesComponent implements OnInit {
   constructor(private fridgeService:FridgeService) { }
 
   ngOnInit(): void {
+    this.fridgeService.getUserData();
     this.getFridges();
   }
 
   // Implements endpoint of getting fridges
   getFridges() {
-    this.fridgeService.getFridges().subscribe(data => {
+    this.fridgeService.getFridges(this.fridgeService.userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']).subscribe(data => {
       this.fridgesList = data;
     });
   }

@@ -23,6 +23,8 @@ import { ListRolesComponent } from './Role/list-roles/list-roles.component';
 import { AddRoleComponent } from './Role/add-role/add-role.component';
 import { EditRoleComponent } from './Role/edit-role/edit-role.component';
 import { ChangeRoleComponent } from './Users/change-role/change-role.component';
+import { ListAllFridgesComponent } from './Fridge/list-all-fridges/list-all-fridges.component';
+import { ResetPasswordComponent } from './Users/reset-password/reset-password.component';
 
 
 
@@ -44,7 +46,9 @@ import { ChangeRoleComponent } from './Users/change-role/change-role.component';
     ListRolesComponent,
     AddRoleComponent,
     EditRoleComponent,
-    ChangeRoleComponent
+    ChangeRoleComponent,
+    ListAllFridgesComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
