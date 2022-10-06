@@ -21,9 +21,12 @@ export class ListFridgesComponent implements OnInit {
 
   // Implements endpoint of getting fridges
   getFridges() {
-    this.fridgeService.getFridges(this.fridgeService.userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']).subscribe(data => {
+    this.fridgeService.getAllFridges().subscribe(data => {
       this.fridgesList = data;
     });
+    // this.fridgeService.getFridges(this.fridgeService.userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']).subscribe(data => {
+    //   this.fridgesList = data;
+    // });
   }
 
   // Implementation for search button function

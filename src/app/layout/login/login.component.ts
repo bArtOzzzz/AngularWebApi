@@ -22,13 +22,16 @@ export class LoginComponent implements OnInit {
     this.fridgeService.loginUser(this.login).subscribe(result => {
       if(result) {
         this.router.navigate(['/home']);
+        setTimeout(function() {
+          window.location.reload();
+        }, 500)
       }
       else {
         console.log("failed");
+        alert("Sorry, something went wrong!")
       }
-      setTimeout(function() {
-        window.location.reload();
-      }, 500)
     })
   }
 }
+
+

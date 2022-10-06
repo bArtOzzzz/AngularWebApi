@@ -17,6 +17,9 @@ export class AuthGuard implements CanActivate {
     var userData = this.jwtHelper.decodeToken(token.accessToken) as User;
 
     if (currentUser) {
+
+      console.log(userData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']);
+
       if (route.data['roles'] && route.data['roles'].indexOf(userData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']) === -1) {
           alert(" Ooops... It seems like you do not have premission for this action!");
           this.router.navigate(['/']);

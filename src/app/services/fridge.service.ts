@@ -7,12 +7,12 @@ import { Fridge } from '../models/fridge';
 import { Token } from '../models/Token';
 import { User } from '../models/User';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class FridgeService {
-  baseUrl: string = 'https://localhost:7199/api/';
+  baseUrl: string = 'http://localhost:5000/api/';
+  localhost: string = "http://localhost:4200/";
   constructor(private http: HttpClient, private router:Router) { }
   jwtHelper = new JwtHelperService;
   profile = new BehaviorSubject<User | null>(null);
@@ -24,7 +24,8 @@ export class FridgeService {
   } 
 
   getAllFridges():Observable<any[]> {
-    return this.http.get<any>(this.baseUrl + 'fridges/');
+    console.log(this.baseUrl + 'fridges');
+    return this.http.get<any>(this.baseUrl + 'fridges');
   } 
 
   updateFridge(fridgeId: string, data: any) {
