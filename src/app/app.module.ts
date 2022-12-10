@@ -8,6 +8,7 @@ import { EndpointsModule } from './endpoints/endpoints.module';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LayoutModule } from './layout/layout.module';
 import { FridgeService } from './services/fridge.service';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common'
 
 export function jwtOptionsFactory(fridgeService:FridgeService) {
   return {
@@ -37,7 +38,8 @@ export function jwtOptionsFactory(fridgeService:FridgeService) {
       }
     })
   ],
-  providers: [{provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}],
+  providers: [{provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}, 
+              {provide:LocationStrategy, useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
