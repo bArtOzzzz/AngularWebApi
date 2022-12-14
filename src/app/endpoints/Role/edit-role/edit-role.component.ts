@@ -13,8 +13,7 @@ export class EditRoleComponent implements OnInit {
   
   constructor(private fridgeService:FridgeService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     this.updateRole();

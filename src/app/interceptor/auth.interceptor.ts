@@ -5,13 +5,17 @@ import { Token } from '../models/Token';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FridgeService } from '../services/fridge.service';
 import { User } from '../models/User';
+import { environment } from 'src/environments/environment.prod'
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private jwtHelper:JwtHelperService, private fridgeService:FridgeService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if(request.url.indexOf("login") > -1 || request.url.indexOf("refreshToken") > -1 || request.urlWithParams.indexOf("register")) {
+    if(request.url.includes(environment.authenticationApiUrl + 'v1/login') || 
+       request.url.includes(environment.authenticationApiUrl + "v1/refreshToken") ||
+       request.url.includes(environment.authenticationApiUrl + 'v1/register')) {
+      console.log("Login, refreshToken or register request!");
       return next.handle(request);
     }
     
@@ -24,9 +28,17 @@ export class AuthInterceptor implements HttpInterceptor {
       var isTokenExpired = this.jwtHelper.isTokenExpired(token.accessToken);
 
       if(!isTokenExpired){
-        return next.handle(request);
+        let jwttoken = request.clone({
+          headers: request.headers.set(
+            'Authorization',
+            `bearer ${token.accessToken}`
+          )
+        });
+        console.log("Others requests: token not expired!");
+        return next.handle(jwttoken);
       }
       else {
+        console.log("Token expired!");
         return this.fridgeService.refreshToken(token).pipe(
           switchMap((newTokens:Token) => {
             localStorage.setItem('tokens', JSON.stringify(newTokens));
