@@ -12,7 +12,7 @@ export class ListProductsComponent implements OnInit {
   productsList: any=[];
   startPage: number = 1;
   activateModalComponent: boolean = false;
-  product: any;
+  product = new Product();
 
   constructor(private fridgeService:FridgeService) { }
 
@@ -32,7 +32,7 @@ export class ListProductsComponent implements OnInit {
   }
 
     // Response to "modalCreateOpen" event
-    modalEditOpen(product:any) {
+    modalEditOpen(product:Product) {
       this.product = product;
       this.activateModalComponent = true;
     }

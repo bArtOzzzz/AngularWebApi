@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FridgeProduct } from 'src/app/models/fridgeProduct';
+import { FridgeProduct } from 'src/app/models/New-FridgeProduct';
 import { FridgeService } from 'src/app/services/fridge.service';
 
 @Component({

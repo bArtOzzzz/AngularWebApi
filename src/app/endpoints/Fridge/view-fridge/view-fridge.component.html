@@ -22,7 +22,7 @@
     <div class="isEmptyFridge" *ngIf="productsList.length <= 0">
         <p>this fridge is empty!</p>
     </div>
-    <div class="row row-cols-4">
+    <!-- <div class="row row-cols-4">
         <div class="col mb-4" *ngFor="let product of productsList | paginate: {itemsPerPage: 16, currentPage: pages}; let i = index">
             <div class="card">
                 <img [src]='product.linkImage' class="card-img-top" alt="Not Found">
@@ -39,11 +39,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
-<div class="pagination-container">
+<!-- <div class="pagination-container">
     <pagination-controls (pageChange)="pages = $event"></pagination-controls>
-</div>
+</div> -->
 
 <!-- Modal for Create -->
 <div class="modal fade" id="createProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -61,7 +61,7 @@
 </div>
 
 <!-- Modal for Edit -->
-<div class="modal fade" id="editProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="editProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary">
@@ -73,6 +73,6 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <app-footer class="footer"></app-footer>

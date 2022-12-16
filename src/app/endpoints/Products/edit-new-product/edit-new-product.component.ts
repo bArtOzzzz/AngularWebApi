@@ -22,6 +22,8 @@ export class EditNewProductComponent implements OnInit {
   }
 
   updateProduct() {
+    console.log(this.product);
+    
     this.fridgeService.updateProduct(this.product.id, this.productEntity).subscribe(data => {
       var closeModalBtn = document.getElementById('edit-new-product-modal-close');
           if(closeModalBtn) {

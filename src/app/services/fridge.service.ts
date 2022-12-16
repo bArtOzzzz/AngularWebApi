@@ -27,6 +27,10 @@ export class FridgeService {
     return this.http.get<any>(environment.fridgeApiUrl + 'v1/fridges');
   } 
 
+  getProductsByFridgeId(fridgeId: string):Observable<any[]> {
+    return this.http.get<any>(environment.fridgeApiUrl + 'v1/fridges/products/' + fridgeId);
+  }
+
   updateFridge(fridgeId: string, data: any) {
     return this.http.put(environment.fridgeApiUrl + 'v1/fridges/' + fridgeId, data, {responseType: "text"});
   }
@@ -78,19 +82,15 @@ export class FridgeService {
     return this.http.get<any>(environment.fridgeApiUrl + 'v1/fridgeProducts');
   }
 
-  getProductsByFridgeId(fridgeId: string):Observable<any[]> {
-    return this.http.get<any>(environment.fridgeApiUrl + 'v1/fridgeProducts/' + fridgeId + '/products');
-  }
-
-  getFridgeProductByProductId(productId: string): Observable<any> {
-    return this.http.get<any>(environment.fridgeApiUrl + 'v1/fridgeProducts/' + productId + '/fridgeProduct');
-  }
+  // getFridgeProductsByFridgeId(fridgeId: string):Observable<any> {
+  //   return this.http.get<any>(environment.fridgeApiUrl + 'v1/fridgeProducts/fridgeProducts/' + fridgeId);
+  // }
 
   updateFridgeProduct(fridgeProductId: string, data: any) {
     return this.http.put(environment.fridgeApiUrl + 'v1/fridgeProducts/' + fridgeProductId, data, {responseType: "text"});
   }
 
-  createFridgeProduct(fridgeId: string, data: any):Observable<any> {
+  createFridgeProduct(fridgeId: string, data: any) {
     return this.http.post(environment.fridgeApiUrl + 'v1/fridgeProducts/' + fridgeId, data, {responseType: "text"});
   }
 
@@ -148,6 +148,7 @@ export class FridgeService {
   }
 
   refreshToken(tokens: Token) {
+    //console.log("Works");
     return this.http.post<Token>(environment.authenticationApiUrl + 'v1/refreshToken', tokens);
   }
 
