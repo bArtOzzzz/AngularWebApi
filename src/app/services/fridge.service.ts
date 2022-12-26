@@ -82,9 +82,9 @@ export class FridgeService {
     return this.http.get<any>(environment.fridgeApiUrl + 'v1/fridgeProducts');
   }
 
-  // getFridgeProductsByFridgeId(fridgeId: string):Observable<any> {
-  //   return this.http.get<any>(environment.fridgeApiUrl + 'v1/fridgeProducts/fridgeProducts/' + fridgeId);
-  // }
+  getFridgeProductsByProductId(productId: string):Observable<any> {
+    return this.http.get<any>(environment.fridgeApiUrl + 'v1/fridgeProducts/fridgeProducts/' + productId);
+  }
 
   updateFridgeProduct(fridgeProductId: string, data: any) {
     return this.http.put(environment.fridgeApiUrl + 'v1/fridgeProducts/' + fridgeProductId, data, {responseType: "text"});

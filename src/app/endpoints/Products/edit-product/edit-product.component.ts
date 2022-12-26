@@ -9,36 +9,28 @@ import { FridgeService } from 'src/app/services/fridge.service';
 })
 export class EditProductComponent implements OnInit {
   fridgeProductEntity = new FridgeProduct();
-  @Input() currentFridgeId!: string;
+  @Input() fridgeProduct!: any;
   @Input() productId!: string;
-  @Input() fridgeProductId!: string;
-  currentFridgeProducts: any=[];
 
   constructor(private fridgeService: FridgeService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
+    this.fridgeProductEntity.fridgeId = this.fridgeProduct.fridgeId;
+    this.fridgeProductEntity.productId = this.fridgeProduct.productId;
     this.editProduct();
   }
 
   editProduct() {
-    this.fridgeProductEntity.productId = this.productId;
-    this.fridgeProductEntity.FridgeId = this.currentFridgeId;
-    
-    for(let i = 0; i < this.currentFridgeProducts.length; i++) {
-      console.log(this.currentFridgeProducts[i]);
-    }
-
-    this.fridgeService.updateFridgeProduct(this.fridgeProductId, this.fridgeProductEntity).subscribe(data => {
+    this.fridgeService.updateFridgeProduct(this.fridgeProduct.id, this.fridgeProductEntity).subscribe(data => {
       var closeModalBtn = document.getElementById('edit-product-modal-close');
         if(closeModalBtn) {
           closeModalBtn.click();
         }
         setTimeout(function() {
           window.location.reload();
-        }, 500)
+        }, 700)
     })
   }
 }

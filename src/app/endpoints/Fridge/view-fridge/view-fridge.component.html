@@ -2,7 +2,7 @@
     <div class="d-flex title-container">
         <h2>DISPLAY {{productsList.length}} PRODUCTS</h2>
         <div class="search-box">
-            <input class="search-txt" type="text" name="productName" placeholder="Type to search" [(ngModel)]="productsList.name" (ngModelChange)="Search()">
+            <input class="search-txt" type="text" name="productName" placeholder="Start typing to search" [(ngModel)]="productsList.name" (ngModelChange)="Search()">
             <a class="search-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -22,7 +22,7 @@
     <div class="isEmptyFridge" *ngIf="productsList.length <= 0">
         <p>this fridge is empty!</p>
     </div>
-    <!-- <div class="row row-cols-4">
+    <div class="row row-cols-4">
         <div class="col mb-4" *ngFor="let product of productsList | paginate: {itemsPerPage: 16, currentPage: pages}; let i = index">
             <div class="card">
                 <img [src]='product.linkImage' class="card-img-top" alt="Not Found">
@@ -31,19 +31,19 @@
                     <p class="card-text">Description for product.</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item card-line" *ngIf="i < currentFridgeProducts.length">In stock: {{currentFridgeProducts[i].productCount}}</li>
+                    <li class="list-group-item card-line" *ngIf="i < fridgeProductsList.length && fridgeProductsList[i].productId == product.id">In stock: {{fridgeProductsList[i].productCount}}</li>
                 </ul>
                 <div class="card-body">
                     <a class="card-link" data-bs-toggle="modal" data-bs-target="#editProduct" (click)="getProductId(product.id)">Edit</a>
-                    <a class="card-link" (click)="deleteFridgeProduct(product)">Delete</a>
+                    <a class="card-link" (click)="deleteFridgeProduct(product.id)">Delete</a>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 </div>
-<!-- <div class="pagination-container">
+<div class="pagination-container">
     <pagination-controls (pageChange)="pages = $event"></pagination-controls>
-</div> -->
+</div>
 
 <!-- Modal for Create -->
 <div class="modal fade" id="createProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -54,14 +54,14 @@
                 <button type="button" class="btn-close" id="create-product-modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <app-add-product [currentFridgeId]="currentFridgeId"></app-add-product>
+                <app-add-product [currentFridgeId]="fridgeId"></app-add-product>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Modal for Edit -->
-<!-- <div class="modal fade" id="editProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="editProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary">
@@ -69,10 +69,10 @@
                 <button type="button" class="btn-close" id="edit-product-modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <app-edit-product [currentFridgeId]="currentFridgeId" [productId]="productId" [fridgeProductId]="fridgeProductId"></app-edit-product>
+                <app-edit-product [fridgeProduct]="fridgeProduct"></app-edit-product>
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 <app-footer class="footer"></app-footer>

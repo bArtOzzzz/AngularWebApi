@@ -1,6 +1,5 @@
 export class FridgeProduct {
-    id!: string; 
     productCount!: number;
-    FridgeId!: string;
+    fridgeId!: string;
     productId!: string;
 }
