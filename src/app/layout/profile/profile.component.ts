@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FridgeService } from 'src/app/services/fridge.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -48,10 +49,17 @@ export class ProfileComponent implements OnInit {
       var closeModalBtn = document.getElementById('edit-user-modal-close');
       if(closeModalBtn) {
         closeModalBtn.click();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
       setTimeout(function() {
         window.location.reload();
-      }, 500)
+      }, 1800)
     })
   }
 
@@ -60,10 +68,17 @@ export class ProfileComponent implements OnInit {
       var closeModalBtn = document.getElementById('edit-user-modal-close');
       if(closeModalBtn) {
         closeModalBtn.click();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
       setTimeout(function() {
         window.location.reload();
-      }, 500)
+      }, 1800)
     })
   }
 
@@ -72,10 +87,17 @@ export class ProfileComponent implements OnInit {
       var closeModalBtn = document.getElementById('edit-user-modal-close');
       if(closeModalBtn) {
         closeModalBtn.click();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
       setTimeout(function() {
         window.location.reload();
-      }, 500)
+      }, 1800)
     })
   }
 
@@ -84,10 +106,17 @@ export class ProfileComponent implements OnInit {
       var closeModalBtn = document.getElementById('edit-user-modal-close');
       if(closeModalBtn) {
         closeModalBtn.click();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
       setTimeout(function() {
         window.location.reload();
-      }, 500)
+      }, 1800)
     })
   }
 
@@ -101,14 +130,34 @@ export class ProfileComponent implements OnInit {
     this.repeatPassword = "";
   }
 
-  deleteUserProfile() {
-    if(confirm(`Are you sure you want to delete this profile?\n This action permanently delete your account!`)) {
-      this.router.navigate(['/login']);
+  navigateToLogin() {
+    this.router.navigate(['/login']);
       this.fridgeService.deleteUser(this.userId).subscribe(res => {
         setTimeout(function() {
+          localStorage.clear();
           window.location.reload();
         }, 500)
       })
-    }
+  }
+
+  deleteUserProfile() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+        setTimeout(this.navigateToLogin.bind(this),1000);
+      }
+    })
   }
 }

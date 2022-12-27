@@ -6,31 +6,11 @@
     background: #eee;
 }
 
-.h-custom {
-    height: calc(100% - 73px);
-}
-
-@media (max-width: 450px) {
-    .h-custom {
-        height: 100%;
-    }
-}
-
 .social {
     border-radius: 50px;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border: none;
-}
-
-.login-content {
-    padding-top: 10vh;
-}
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
 }
 
 .registerLink {

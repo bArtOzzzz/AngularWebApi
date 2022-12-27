@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FridgeService } from 'src/app/services/fridge.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-fridges',
@@ -24,9 +25,6 @@ export class ListFridgesComponent implements OnInit {
     this.fridgeService.getAllFridges().subscribe(data => {
       this.fridgesList = data;
     });
-    // this.fridgeService.getFridges(this.fridgeService.userData['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']).subscribe(data => {
-    //   this.fridgesList = data;
-    // });
   }
 
   // Implementation for search button function
@@ -53,12 +51,27 @@ export class ListFridgesComponent implements OnInit {
   }
 
   deleteFridge(fridgeId: string) {
-    if(confirm(`Are you sure you want to delete this fridge?`)) {
-      this.fridgeService.deleteFridge(fridgeId).subscribe(res => {
-        setTimeout(function() {
-          window.location.reload();
-        }, 500)
-      })
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+        this.fridgeService.deleteFridge(fridgeId).subscribe(res => {
+          setTimeout(function() {
+            window.location.reload();
+          }, 500)
+        })
+      }
+    })
   }
 }

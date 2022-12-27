@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FridgeService } from 'src/app/services/fridge.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reset-password',
@@ -22,6 +23,13 @@ export class ResetPasswordComponent implements OnInit {
   resetPassword() {
     this.fridgeService.resetPassword(this.user.id).subscribe(data => {
       this.newPassword = data;
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1800
+      })
     })
   }
 }

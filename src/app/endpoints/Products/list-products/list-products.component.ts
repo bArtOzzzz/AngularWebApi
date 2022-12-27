@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { FridgeService } from 'src/app/services/fridge.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-products',
@@ -49,12 +50,27 @@ export class ListProductsComponent implements OnInit {
   }
 
   deleteProduct(productId: string) {
-    if(confirm(`Are you sure you want to delete this product? \nThis action delete all products from user's fridges.`)) {
-      this.fridgeService.deleteProduct(productId).subscribe(res => {
-        setTimeout(function() {
-          window.location.reload();
-        }, 500)
-      })
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+        this.fridgeService.deleteProduct(productId).subscribe(res => {
+          setTimeout(function() {
+            window.location.reload();
+          }, 1800)
+        })
+      }
+    })
   }
 }

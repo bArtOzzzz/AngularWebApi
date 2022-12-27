@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/models/role';
 import { FridgeService } from 'src/app/services/fridge.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-role',
@@ -24,10 +25,17 @@ export class AddRoleComponent implements OnInit {
       var closeModalBtn = document.getElementById('create-role-modal-close');
         if(closeModalBtn) {
           closeModalBtn.click();
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+          })
         }
         setTimeout(function() {
           window.location.reload();
-        }, 500)
+        }, 1800)
     })
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Model } from 'src/app/models/Model';
 import { FridgeService } from 'src/app/services/fridge.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-models',
@@ -47,7 +48,6 @@ export class ListModelsComponent implements OnInit {
       this.modelList = data;
     });
   }
-
   deleteModel(modelId: string) {
     for(let i = 0; i < this.fridgeList.length; i++) {
       if(this.fridgeList[i].modelId == modelId) {
@@ -56,12 +56,27 @@ export class ListModelsComponent implements OnInit {
         return;
       }
     }
-    if(confirm(`Are you sure you want to delete this model?`)) {
-      this.fridgeService.deleteModel(modelId).subscribe(res => {
-        setTimeout(function() {
-          window.location.reload();
-        }, 500)
-      })
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+        this.fridgeService.deleteModel(modelId).subscribe(res => {
+          setTimeout(function() {
+            window.location.reload();
+          }, 1800)
+        })
+      }
+    })
   }
 }

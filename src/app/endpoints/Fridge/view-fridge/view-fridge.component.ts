@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FridgeService } from 'src/app/services/fridge.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-fridge',
@@ -62,16 +63,31 @@ export class ViewFridgeComponent implements OnInit {
   }
 
   deleteFridgeProduct(productId: string) {
-    if(confirm(`Are you sure you want to delete this product?`)) {
-      for(let i = 0; i < this.fridgeProductsList.length; i++) {
-        if(this.fridgeProductsList[i].productId == productId)
-          this.fridgeProduct = this.fridgeProductsList[i];
-      }
-      this.fridgeService.deleteFridgeProduct(this.fridgeProduct.id).subscribe(res => {
-        setTimeout(function() {
-          window.location.reload();
-        }, 700)
-      })
+    for(let i = 0; i < this.fridgeProductsList.length; i++) {
+      if(this.fridgeProductsList[i].productId == productId)
+        this.fridgeProduct = this.fridgeProductsList[i];
     }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+        this.fridgeService.deleteFridgeProduct(this.fridgeProduct.id).subscribe(res => {
+          setTimeout(function() {
+            window.location.reload();
+          }, 1800)  
+        })
+      }
+    })
   }
 }

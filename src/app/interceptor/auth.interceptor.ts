@@ -10,6 +10,10 @@ import { User } from '../models/User';
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private jwtHelper:JwtHelperService, private fridgeService:FridgeService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // if(request.url.indexOf("login") > -1 || request.url.indexOf("refreshToken") > -1 || request.urlWithParams.indexOf("register")) {
+    //   console.log("Login")
+    // }
+
     const localStorageToken = localStorage.getItem('tokens');
     var token:Token;
 
@@ -25,11 +29,10 @@ export class AuthInterceptor implements HttpInterceptor {
             `bearer ${token.accessToken}`
           )
         });
-        //console.log("Others requests: token not expired!");
         return next.handle(jwttoken);
       }
       else {
-        //console.log("Token expired!");
+        console.log("Token expired!");
         return this.fridgeService.refreshToken(token).pipe(
           switchMap((newTokens:Token) => {
             localStorage.setItem('tokens', JSON.stringify(newTokens));
