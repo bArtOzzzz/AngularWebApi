@@ -148,7 +148,6 @@ export class FridgeService {
   }
 
   refreshToken(tokens: Token) {
-    //console.log("Works");
     return this.http.post<Token>(environment.authenticationApiUrl + 'v1/refreshToken', tokens);
   }
 
@@ -159,10 +158,6 @@ export class FridgeService {
     window.location.reload();
   }
 
-  isExist(username: string) {
-    return this.http.get<boolean>(environment.authenticationApiUrl + 'v1/exist/' + username);
-  }
-
   //___________________________________________________User_____________________________________________________
   getUsers():Observable<any[]> {
     return this.http.get<any>(environment.authenticationApiUrl + 'v2/users');
@@ -170,6 +165,10 @@ export class FridgeService {
 
   getUser(userId: string):Observable<any> {
     return this.http.get<any>(environment.authenticationApiUrl + 'v2/users/' + userId);
+  }
+
+  isExist(username: string) {
+    return this.http.get<boolean>(environment.authenticationApiUrl + 'v2/users/isExist/' + username);
   }
 
   updateUser(userId: string, data: any) {

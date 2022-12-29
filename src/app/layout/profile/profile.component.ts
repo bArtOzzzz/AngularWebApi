@@ -45,21 +45,32 @@ export class ProfileComponent implements OnInit {
   }
 
   editUsername() {
-    this.fridgeService.updateUserName(this.userId, this.userData).subscribe(data => {
-      var closeModalBtn = document.getElementById('edit-user-modal-close');
-      if(closeModalBtn) {
-        closeModalBtn.click();
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Your work has been saved',
-          showConfirmButton: false,
-          timer: 1500
+    this.fridgeService.isExist(this.userData.username).subscribe(data => {
+      if(!data) {
+        this.fridgeService.updateUserName(this.userId, this.userData).subscribe(data => {
+          var closeModalBtn = document.getElementById('edit-user-modal-close');
+          if(closeModalBtn) {
+            closeModalBtn.click();
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+          setTimeout(function() {
+            window.location.reload();
+          }, 1800)
         })
       }
-      setTimeout(function() {
-        window.location.reload();
-      }, 1800)
+      else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'User with this name already exist!'
+        })
+      }
     })
   }
 
@@ -102,21 +113,32 @@ export class ProfileComponent implements OnInit {
   }
 
   editUserProfile() {
-    this.fridgeService.updateUser(this.userId, this.userData).subscribe(data => {
-      var closeModalBtn = document.getElementById('edit-user-modal-close');
-      if(closeModalBtn) {
-        closeModalBtn.click();
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Your work has been saved',
-          showConfirmButton: false,
-          timer: 1500
+    this.fridgeService.isExist(this.userData.username).subscribe(data => {
+      if(!data) {
+        this.fridgeService.updateUser(this.userId, this.userData).subscribe(data => {
+          var closeModalBtn = document.getElementById('edit-user-modal-close');
+          if(closeModalBtn) {
+            closeModalBtn.click();
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+          setTimeout(function() {
+            window.location.reload();
+          }, 1800)
         })
       }
-      setTimeout(function() {
-        window.location.reload();
-      }, 1800)
+      else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'User with this name already exist!'
+        })
+      }
     })
   }
 
@@ -126,7 +148,6 @@ export class ProfileComponent implements OnInit {
       emailAddress: "",
       password: ""
     }
-
     this.repeatPassword = "";
   }
 

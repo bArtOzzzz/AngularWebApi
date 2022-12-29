@@ -12,7 +12,31 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ * {
+	margin: 0;
+	padding: 0;
+}
 
+html,
+body {
+	height: 100%;
+}
+
+.wrapper {
+	position: relative;
+	min-height: 100%;
+}
+
+.content {
+	padding-bottom: 240px;
+}
+
+.footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
 
 :root {
   --bs-blue: #007bff;

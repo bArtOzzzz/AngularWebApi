@@ -15,8 +15,7 @@ export class RegisterComponent implements OnInit {
   repeatPassword!: string;
   user = new Register();
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   navigateToLogin() {
     this.router.navigate(['/login']);
@@ -24,7 +23,7 @@ export class RegisterComponent implements OnInit {
 
    registerUser() {
     this.fridgeService.isExist(this.user.username).subscribe(data => {
-      if(data == false) {
+      if(!data){
         this.fridgeService.registerUser(this.user).subscribe(data => {
           Swal.fire({
             position: 'top-end',
@@ -33,7 +32,6 @@ export class RegisterComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
-
           setTimeout(this.navigateToLogin.bind(this),1800);
         })
       }
