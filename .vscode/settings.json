@@ -2,5 +2,7 @@
     "appService.zipIgnorePattern": [
         "node_modules{,/**}",
         ".vscode{,/**}"
-    ]
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/d28b3bc7-eea0-477a-ae92-496a9bc3f997/AppServices/subscriptions/d28b3bc7-eea0-477a-ae92-496a9bc3f997/resourceGroups/FridgeProductRG/providers/Microsoft.Web/sites/ApplicationClient",
+    "appService.deploySubpath": "dist"
 }

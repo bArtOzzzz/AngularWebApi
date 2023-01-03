@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { catchError, Observable, switchMap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, Subject, switchMap, throwError } from 'rxjs';
 import { Token } from '../models/Token';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FridgeService } from '../services/fridge.service';
@@ -9,6 +9,7 @@ import { User } from '../models/User';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private jwtHelper:JwtHelperService, private fridgeService:FridgeService) { }
+  
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // if(request.url.indexOf("login") > -1 || request.url.indexOf("refreshToken") > -1 || request.urlWithParams.indexOf("register")) {
     //   console.log("Login")
@@ -33,6 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
       }
       else {
         console.log("Token expired!");
+        
         return this.fridgeService.refreshToken(token).pipe(
           switchMap((newTokens:Token) => {
             localStorage.setItem('tokens', JSON.stringify(newTokens));

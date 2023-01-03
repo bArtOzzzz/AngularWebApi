@@ -39,8 +39,7 @@ export class RegisterComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: "It seems like username <<" + this.user.username + ">> already taken!",
-          footer: '<a href="">Why do I have this issue?</a>'
+          text: 'User with this name already exist!'
         })
       }
     })

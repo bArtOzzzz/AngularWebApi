@@ -152,7 +152,6 @@ export class FridgeService {
   }
 
   Logout() {
-    alert('Your session expired');
     localStorage.removeItem('tokens');
     this.router.navigate(['/login']);
     window.location.reload();

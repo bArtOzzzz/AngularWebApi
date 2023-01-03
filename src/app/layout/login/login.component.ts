@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
           '',
           'success'
         );
-        setTimeout(this.navigateToHome.bind(this),1000);
+        setTimeout(this.navigateToHome.bind(this), 1800);
       }
       else {
         Swal.fire({
