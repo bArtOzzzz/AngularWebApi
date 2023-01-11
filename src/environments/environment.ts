@@ -1,4 +1,6 @@
 export const environment = {
   production: false,
-  baseUrl: "http://localhost:5039/api/"
+  authenticationApiUrl: "http://localhost:5039/api/",
+  productApiUrl: "http://localhost:49643/api/",
+  fridgeApiUrl: "http://localhost:5269/api/"
 };

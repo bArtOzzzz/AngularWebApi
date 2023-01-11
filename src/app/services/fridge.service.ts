@@ -6,8 +6,8 @@ import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { Fridge } from '../models/fridge';
 import { Token } from '../models/Token';
 import { User } from '../models/User';
-//import { environment } from 'src/environments/environment';
-import { environment } from 'src/environments/environment.prod'
+import { environment } from 'src/environments/environment';
+//import { environment } from 'src/environments/environment.prod'
 
 @Injectable({
   providedIn: 'root'
